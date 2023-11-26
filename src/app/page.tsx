@@ -8,14 +8,12 @@ export default function Home() {
     { todo: "Apple", id: 0 },
     { todo: "Bat", id: 1 },
   ]);
-
   const AddTodo = () => {
     if (state.length >= 1 && state) {
       setTodoList([...todoList, { todo: state, id: todoList.length + 1 }]);
       setState("");
     } else alert("Please Add Todo");
   };
-
   const UpdateTodo = (todoId: number) => {
     if (state.length >= 1 && state) {
       // setTodoList((prevTodos: any[]) =>
@@ -29,9 +27,8 @@ export default function Home() {
       );
       setTodoList(update);
       setState("");
-    } else alert("Please Select Todo");
+    } else alert("Please Select/Enter Todo");
   };
-
   const DeleteTodo = (todoId: number) => {
     // console.log("todoID", todoId);
     // const deleteTodos = todoList?.map((item, index) => {
@@ -72,7 +69,7 @@ export default function Home() {
       <div className="mx-auto mt-3 flex w-1/2 justify-center flex-wrap ">
         {todoList &&
           todoList?.map((item, i) => (
-            <div key={i} className=" bg-gray-400 rounded m-2 px-2">
+            <div key={i} className=" bg-gray-300 rounded m-2 px-2">
               <p className="text-center">
                 <span
                   className="ms-2 cursor-pointer"
