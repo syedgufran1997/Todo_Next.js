@@ -4,7 +4,6 @@ import { useState } from "react";
 
 export default function Home() {
   const [state, setState] = useState("");
-
   const [todoList, setTodoList] = useState([
     { todo: "Apple", id: 0 },
     { todo: "Bat", id: 1 },
@@ -41,9 +40,6 @@ export default function Home() {
     //   }
     // });
 
-    // const newTodos = [...todoList];
-    // newTodos.splice(todoId, 1);
-
     setTodoList(function (todoList: any) {
       return todoList.filter((item: any) => item.id !== todoId);
     });
@@ -54,7 +50,7 @@ export default function Home() {
     <main className="">
       <h1 className="flex justify-center font-bold text-lg mt-5">Todo App</h1>
       <p className="flex justify-center ">
-        Tech: Next.js, Typescript, Tailwind{" "}
+        Tech: Next.js, Typescript, Tailwind
       </p>
 
       <div className="flex justify-center mt-5">
@@ -64,7 +60,6 @@ export default function Home() {
           onChange={(e) => setState(e.target.value)}
           className="rounded bg-slate-200 border border-blue-400 me-2 outline-none px-3 "
         />
-
         <button
           type="button"
           onClick={AddTodo}
