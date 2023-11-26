@@ -5,8 +5,8 @@ import { useState } from "react";
 export default function Home() {
   const [state, setState] = useState("");
   const [todoList, setTodoList] = useState([
-    { todo: "Apple", id: 0 },
-    { todo: "Bat", id: 1 },
+    { todo: "Apple", id: 0, complete: true },
+    { todo: "Bat", id: 1, complete: false },
   ]);
   const AddTodo = () => {
     if (state.length >= 1 && state) {
@@ -43,6 +43,14 @@ export default function Home() {
     // setTodoList((todoList) => todoList.filter((task) => task.id !== todoId));
   };
 
+  const CompleteTodo = (todoId: number) => {
+    console.log(todoId);
+    const complete = todoList.map((item) =>
+      item.id === todoId ? { ...item, complete: true } : item
+    );
+
+    setTodoList(complete);
+  };
   return (
     <main className="">
       <h1 className="flex justify-center font-bold text-lg mt-5">Todo App</h1>
@@ -69,10 +77,17 @@ export default function Home() {
       <div className="mx-auto mt-3 flex w-1/2 justify-center flex-wrap ">
         {todoList &&
           todoList?.map((item, i) => (
-            <div key={i} className=" bg-gray-300 rounded m-2 px-2">
+            <div
+              key={i}
+              className={`${
+                item.complete === true ? " bg-blue-300" : "bg-gray-300 "
+              } 0 rounded m-2 px-2`}
+            >
               <p className="text-center">
                 <span
-                  className="ms-2 cursor-pointer"
+                  className={`${
+                    item.complete === true ? "line-through  " : " "
+                  } ms-2 cursor-pointer`}
                   onClick={() => setState(item.todo)}
                 >
                   {item?.todo}
@@ -96,6 +111,12 @@ export default function Home() {
                   onClick={() => DeleteTodo(item?.id)}
                 >
                   &#10060;
+                </span>
+                <span
+                  className="ms-2 cursor-pointer"
+                  onClick={() => CompleteTodo(item?.id)}
+                >
+                  &#9989;
                 </span>
               </p>
             </div>
